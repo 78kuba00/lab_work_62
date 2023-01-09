@@ -10,8 +10,8 @@
             <p class="card-text">Остаток: {{ product.balance }}</p>
             <p class="card-text">Описание товара: {{ product.description }}</p>
             {% include 'partial/form_add_to_cart.html' %}
-            <a href="{% url 'product_update' product.pk %}" class="btn btn-primary">Редактировать</a>
-            <a href="{% url 'product_delete' product.pk %}" class="btn btn-danger">Удалить</a>
+            <a href="{% url 'webapp:product_update' product.pk %}" class="btn btn-primary">Редактировать</a>
+            <a href="{% url 'webapp:product_delete' product.pk %}" class="btn btn-danger">Удалить</a>
         </div>
     </div>
 {% endblock %}

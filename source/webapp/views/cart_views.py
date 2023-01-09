@@ -23,7 +23,7 @@ class AddItemToCart(View):
         next = self.request.GET.get('next')
         if next:
             return next
-        return reverse('index')
+        return reverse('webapp:index')
 
 
 class CartList(ListView):
@@ -41,7 +41,7 @@ class CartList(ListView):
 
 class CartDelete(DeleteView):
     model = Cart
-    success_url = reverse_lazy('cart_index')
+    success_url = reverse_lazy('webapp:cart_index')
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
@@ -49,7 +49,7 @@ class CartDelete(DeleteView):
 
 class CartDeleteOne(DeleteView):
     model = Cart
-    success_url = reverse_lazy('cart_index')
+    success_url = reverse_lazy('webapp:cart_index')
 
     def get(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
@@ -68,7 +68,7 @@ class CartDeleteOne(DeleteView):
 class OrderCreate(CreateView):
     model = Order
     form_class = OrderForm
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('webapp:index')
 
     def form_valid(self, form):
         order = form.save()

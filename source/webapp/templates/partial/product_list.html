@@ -3,12 +3,12 @@
         <div class="col-sm-6 my-3">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><a href="{% url 'product_view' product.pk %}">{{ product.name }}</a></h5>
+                    <h5 class="card-title"><a href="{% url 'webapp:product_view' product.pk %}">{{ product.name }}</a></h5>
                     <p class="card-text">Цена: {{ product.price }}</p>
                     <p class="card-text">Категория: {{ product.get_category_display }}</p>
                     {% include 'partial/form_add_to_cart.html' %}
-                    <a href="{% url 'product_update' product.pk %}" class="btn btn-primary">Редактировать</a>
-                    <a href="{% url 'product_delete' product.pk %}" class="btn btn-danger">Удалить</a>
+                    <a href="{% url 'webapp:product_update' product.pk %}" class="btn btn-primary">Редактировать</a>
+                    <a href="{% url 'webapp:product_delete' product.pk %}" class="btn btn-danger">Удалить</a>
                 </div>
             </div>
         </div>

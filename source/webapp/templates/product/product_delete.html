@@ -5,6 +5,6 @@
     <form action="" method="POST">
     {% csrf_token %}
         <input type="submit" class="btn btn-danger" value="Да">
-        <a href="{% url 'product_view' product.pk %}" class="btn btn-success">Нет</a>
+        <a href="{% url 'webapp:product_view' product.pk %}" class="btn btn-success">Нет</a>
     </form>
 {% endblock %}
