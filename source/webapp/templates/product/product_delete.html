@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Вы действительно хотите удалить {{ product.name }}?</h2>
+    <form action="" method="POST">
+    {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Да">
+        <a href="{% url 'product_view' product.pk %}" class="btn btn-success">Нет</a>
+    </form>
+{% endblock %}

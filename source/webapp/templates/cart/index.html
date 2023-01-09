@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" aria-current="page" href="{% url 'product_add' %}">Создать товар ( + )</a>
+    </li>
+{% endblock %}
+
+
+
+
+{% block content %}
+
+    <h1>Корзина</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Название</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Сумма</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for cart in carts %}
+            <tr>
+                <th>{{ cart.product.name }}</th>
+                <td>{{ cart.qty }}</td>
+                <td>{{ cart.product.price }}</td>
+                <td>{{ cart.get_product_total }}</td>
+                <td><a href="{% url 'cart_delete_one' cart.pk %}">Удалить один</a></td>
+                <td><a href="{% url 'cart_delete' cart.pk %}">Удалить</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h5>Общая цена: {{ total }}</h5>
+
+    <form action="{% url 'order_create' %}" method="POST">
+        {% include 'partial/product_form.html' with button_text='Заказать' %}
+    </form>
+
+{% endblock %}

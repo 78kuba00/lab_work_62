@@ -1,0 +1,7 @@
+<form action="{% url 'add_to_cart' product.pk %}?next={{ request.path }}" method="post" class="d-inline-block">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <input type="number" class="form-control" min="1" value="1" name="qty">
+        <button type="submit" class="btn btn-success">Добавить в корзину</button>
+    </div>
+</form>
