@@ -2,7 +2,7 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import View, ListView, DeleteView, CreateView
 from django.shortcuts import redirect, get_object_or_404
 
-from webapp.models import Product, Cart, Order, OrderProduct
+from webapp.models import Product, Order, OrderProduct
 from webapp.forms import OrderForm
 
 
@@ -11,11 +11,12 @@ class AddItemToCart(View):
         product = get_object_or_404(Product, pk=kwargs.get('pk'))
         qty = int(request.POST.get('qty'))
 
-        cart, _ = Cart.objects.get_or_create(product=product)
+        cart = Order.objects.get_or_create(status='new', session=request.session._session_key)
+        cart_item = OrderProduct.objects.get_or_create(order=cart, product=product)
 
-        if product.balance >= cart.qty + qty:
-            cart.qty += qty
-            cart.save()
+        if product.balance >= cart_item.product + qty:
+            cart_item.qty += qty
+            cart_item.save()
 
         return redirect(self.get_redirect_url())
 
@@ -27,20 +28,20 @@ class AddItemToCart(View):
 
 
 class CartList(ListView):
-    model = Cart
+    model = Order
     template_name = 'cart/index.html'
     context_object_name = "carts"
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(object_list=object_list, **kwargs)
 
-        context['total'] = Cart.get_total()
+        context['total'] = Order.get_total()
         context['form'] = OrderForm
         return context
 
 
 class CartDelete(DeleteView):
-    model = Cart
+    model = Order
     success_url = reverse_lazy('webapp:cart_index')
 
     def get(self, request, *args, **kwargs):
@@ -48,7 +49,7 @@ class CartDelete(DeleteView):
 
 
 class CartDeleteOne(DeleteView):
-    model = Cart
+    model = Order
     success_url = reverse_lazy('webapp:cart_index')
 
     def get(self, request, *args, **kwargs):
@@ -73,7 +74,7 @@ class OrderCreate(CreateView):
     def form_valid(self, form):
         order = form.save()
 
-        for item in Cart.objects.all():
+        for item in Order.objects.all():
             OrderProduct.objects.create(product=item.product, qty=item.qty, order=order)
             item.product.balance -= item.qty
             item.product.save()

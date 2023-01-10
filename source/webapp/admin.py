@@ -11,4 +11,6 @@ class ProductAdmin(admin.ModelAdmin):
     exclude = []
 
 
+
 admin.site.register(Product, ProductAdmin)
+
