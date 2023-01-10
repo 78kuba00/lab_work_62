@@ -20,6 +20,9 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.id}. {self.name} - {self.balance}'
 
+    class Meta:
+        ordering = ['-id']
+
 
 # class Cart(models.Model):
 #     product = models.ForeignKey('webapp.Product', on_delete=models.CASCADE, related_name='cart', verbose_name='Товар')
@@ -46,6 +49,9 @@ class OrderProduct(models.Model):
 
     def get_product_total(self):
         return self.qty * self.product.price
+
+    # class Meta:
+    #     fields = ('product', 'order', 'qty')
 
 
 

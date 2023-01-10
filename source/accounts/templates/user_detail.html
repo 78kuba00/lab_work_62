@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block nav %}
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'webapp:project_add' %}">Create Project ( + )</a>
+    </li>
+    {% if user_obj.pk == request.user.pk %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:change' %}">Edit user</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'accounts:password_change' %}">Change password</a>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h1>Личная страница пользователя {{ user_obj.get_full_name|default:user_obj.username }}</h1>
+    <div class="card mb-3">
+  <div class="row g-0">
+      {% if user_obj.profile.avatar %}
+        <div class="col-md-4">
+          <img src="{{ user_obj.profile.avatar.url }}" class="img-fluid rounded-start">
+        </div>
+      {% endif %}
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Имя пользователя: {{ user_obj.username }}</h5>
+            <p class="card-text">Имя: {{ user_obj.first_name }}</p>
+            <p class="card-text">Фамилия: {{ user_obj.last_name }}</p>
+            <p class="card-text">Дата рождения: {{ user_obj.profile.birth_date|date:'d.m.Y' }}</p>
+            <p class="card-text">Почта: {{ user_obj.email }}</p>
+            <p class="card-text">Git: {{ user_obj.github }}</p>
+            <p class="card-text">О себе: {{ user_obj.bio }}</p>
+          </div>
+        </div>
+  </div>
+</div>
+{% include 'partial/project_list_partial.html' with products=object_list %}
+{% endblock %}

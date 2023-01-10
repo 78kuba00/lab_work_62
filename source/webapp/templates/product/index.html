@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 
 {% block nav %}
-    <li class="nav-item">
-        <a class="nav-link" aria-current="page" href="{% url 'webapp:product_add' %}">Создать товар ( + )</a>
-    </li>
+    {%  if request.user.is_authenticated %}
+        {% if perms.webapp.add_project %}
+            <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="{% url 'webapp:product_add' %}">Создать товар ( + )</a>
+            </li>
+        {% endif %}
+    {% endif %}
 {% endblock %}
 
 

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block nav %}
+{% endblock %}
+{% block content %}
+<h1>All users</h1>
+<div class="row">
+    {% for user_obj in users_obj %}
+        <div class="col col-lg-4 my-2">
+            <div class="card">
+                <h5 class="card-header"> Name: <a href="{% url 'accounts:detail' user_obj.pk %}">{{ user_obj }}</a></h5>
+{#                <p class="card-text text-secondary">Пользователь: {{ project.users }}</p>#}
+{#                <div class="card-body">#}
+{#                    <h5 class="card-title">Дата начала:{{ user_obj.start_at }} </h5>#}
+{#                    <p class="card-text">Дата окончания: {{ project.end_at|default:"-" }} </p>#}
+{#                </div>#}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% if is_paginated %}
+    {% include 'partial/pagination.html' %}
+{% endif %}
+{% endblock %}

@@ -11,12 +11,13 @@ class AddItemToCart(View):
         product = get_object_or_404(Product, pk=kwargs.get('pk'))
         qty = int(request.POST.get('qty'))
 
-        cart = Order.objects.get_or_create(status='new', session=request.session._session_key)
-        cart_item = OrderProduct.objects.get_or_create(order=cart, product=product)
+        cart, _ = Order.objects.get_or_create(products=product)
+        # cart = Order.objects.get_or_create(status='new', session=request.session._session_key)
+        # cart_item, _ = OrderProduct.objects.get_or_create(order=cart.pk, product=product.pk)
 
-        if product.balance >= cart_item.product + qty:
-            cart_item.qty += qty
-            cart_item.save()
+        if product.balance >= cart.product + qty:
+            cart.qty += qty
+            cart.save()
 
         return redirect(self.get_redirect_url())
 
@@ -33,8 +34,8 @@ class CartList(ListView):
     context_object_name = "carts"
 
     def get_context_data(self, *, object_list=None, **kwargs):
+        print(self.request.session['key'])
         context = super().get_context_data(object_list=object_list, **kwargs)
-
         context['total'] = Order.get_total()
         context['form'] = OrderForm
         return context

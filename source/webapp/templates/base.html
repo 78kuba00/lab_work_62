@@ -21,16 +21,31 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 {% block nav %}{% endblock %}
-
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="{% url 'webapp:cart_index' %}">Корзина</a>
                 </li>
+            {% if request.user.is_authenticated %}
+            <p class="nav-item">
+                <p class="nav-link">Hello, <a href="{% url 'accounts:detail' request.user.pk %}">{{ request.user.username }}</a></p>
+            </p>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:logout' %}?next={{ request.get_full_path }}">Exit</a>
+            </li>
+        {% else %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:login' %}?next={{ request.path }}">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'accounts:create' %}?next={{ request.path }}">Register</a>
+            </li>
+        {% endif %}
             </div>
         </div>
     </div>
 </nav>
 
 <div class="container my-2">
+    {% include "partial/messages.html" %}
     {% block content %}
     {% endblock %}
 </div>
