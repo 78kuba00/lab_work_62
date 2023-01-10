@@ -1,0 +1,206 @@
+[
+{
+  "model": "webapp.product",
+  "pk": 2,
+  "fields": {
+    "name": "LG monitor",
+    "description": "LG 34 21:9 (Ultrawide)",
+    "category": "electronics",
+    "balance": 4,
+    "price": "399.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 3,
+  "fields": {
+    "name": "McBook",
+    "description": "MacBook Pro (15-inch, 2018)",
+    "category": "electronics",
+    "balance": 3,
+    "price": "999.99"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 4,
+  "fields": {
+    "name": "Steam Deck",
+    "description": "256 ГБ",
+    "category": "electronics",
+    "balance": 0,
+    "price": "699.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 5,
+  "fields": {
+    "name": "Spider-Man",
+    "description": "Civil War",
+    "category": "books",
+    "balance": 9,
+    "price": "25.99"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 6,
+  "fields": {
+    "name": "Batman",
+    "description": "Dark Knight",
+    "category": "books",
+    "balance": 8,
+    "price": "29.99"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 7,
+  "fields": {
+    "name": "Watchmen",
+    "description": "Dr Manhattan",
+    "category": "books",
+    "balance": 0,
+    "price": "99.99"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 8,
+  "fields": {
+    "name": "A4",
+    "description": "Snegurochka",
+    "category": "stationery",
+    "balance": 2,
+    "price": "15.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 9,
+  "fields": {
+    "name": "Sticker",
+    "description": "Rainbow color stickers",
+    "category": "stationery",
+    "balance": 10,
+    "price": "1.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 10,
+  "fields": {
+    "name": "Markers",
+    "description": "Big set of markers",
+    "category": "stationery",
+    "balance": 4,
+    "price": "4.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 11,
+  "fields": {
+    "name": "Trimmer",
+    "description": "Hairdressing trimmer",
+    "category": "other",
+    "balance": 2,
+    "price": "50.00"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 12,
+  "fields": {
+    "name": "Knife",
+    "description": "Kitchen knife (small)",
+    "category": "other",
+    "balance": 7,
+    "price": "9.99"
+  }
+},
+{
+  "model": "webapp.orderproduct",
+  "pk": 1,
+  "fields": {
+    "product": 2,
+    "order": 1,
+    "qty": 1
+  }
+},
+{
+  "model": "webapp.orderproduct",
+  "pk": 2,
+  "fields": {
+    "product": 3,
+    "order": 1,
+    "qty": 1
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 1,
+  "fields": {
+    "name": "Kuvasya",
+    "phone": "996700424242",
+    "address": "78kuba00",
+    "created_at": "2023-01-09T15:27:01.972Z",
+    "users": null,
+    "session": null,
+    "status": "new"
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 2,
+  "fields": {
+    "name": "",
+    "phone": "",
+    "address": "",
+    "created_at": "2023-01-09T18:42:09.834Z",
+    "users": null,
+    "session": "cpon4sxw26lwd3tk2s8b3v1zp38tsa4g",
+    "status": "new"
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 3,
+  "fields": {
+    "name": "",
+    "phone": "",
+    "address": "",
+    "created_at": "2023-01-10T06:50:03.884Z",
+    "users": null,
+    "session": "7eymeinqlro57thj1x680mdqkk3fo7ri",
+    "status": "new"
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 4,
+  "fields": {
+    "name": "",
+    "phone": "",
+    "address": "",
+    "created_at": "2023-01-10T07:43:20.055Z",
+    "users": null,
+    "session": "b36bi32ej4at04cyagpxl6d1mgyf5cqx",
+    "status": "new"
+  }
+},
+{
+  "model": "webapp.order",
+  "pk": 5,
+  "fields": {
+    "name": "",
+    "phone": "",
+    "address": "",
+    "created_at": "2023-01-10T07:53:35.724Z",
+    "users": null,
+    "session": "guzncdo2rup47jpqqhuk7tu5ifhhlwfn",
+    "status": "new"
+  }
+}
+]
